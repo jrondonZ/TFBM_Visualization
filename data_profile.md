@@ -1,0 +1,28 @@
+# Dataset profile
+- Total rows (records): 106483
+- Unique tissues: 10
+- Unique TF tokens: 567
+
+## Rows per tissue
+- NEPHRONPROGENITOR: 24,982
+- MESOTHELIALEPICARDIUM: 15,199
+- OSTEOCYTE: 14,720
+- NEURALCREST: 14,687
+- STOMACH: 12,358
+- MESENCHYMAL: 12,274
+- HEPATOCYTE: 5,438
+- SPLEEN: 3,388
+- PANCREAS: 3,323
+- PERIPHERALBLOOD: 114
+
+## Top 10 TFs by frequency (all tissues)
+- ZNF384: 130,805
+- NFIX: 74,613
+- MEIS1: 59,852
+- SOX15: 57,974
+- RHOXF1: 56,966
+- GSX1: 53,625
+- SRY: 50,279
+- SHOX: 49,461
+- ISL2: 47,730
+- NFATC3: 47,644

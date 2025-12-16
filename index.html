@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TFBS Tissue Signatures — Linked Heatmap + Bar Chart</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>TFBS Tissue Signatures</h1>
+      <p class="subtitle">Linked heatmap (direction) + bar chart (counts) with ethical annotations</p>
+    </div>
+    <div class="controls">
+      <label for="tfCount">Top TFs shown:</label>
+      <select id="tfCount">
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40" selected>40</option>
+        <option value="60">60</option>
+      </select>
+      <button id="clearPin" title="Clear the clicked (pinned) selection">Clear selection</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="viz">
+      <div id="heatmap" class="card">
+        <div class="cardTitle">Heatmap: signed proportion per TF and tissue</div>
+        <svg id="heatSvg" aria-label="Heatmap of TF direction by tissue"></svg>
+        <div class="footnote">
+          Color encodes <b>signed proportion</b> (plus−minus)/total, size encodes <b>count</b> (records).
+          Dotted overlay indicates <b>imputed structural zero</b> (TF not observed for that tissue in the file).
+        </div>
+      </div>
+
+      <div id="bars" class="card">
+        <div class="cardTitle">Details: counts for selected TF across tissues</div>
+        <svg id="barSvg" aria-label="Bar chart of counts"></svg>
+      </div>
+    </section>
+
+    <aside id="info" class="infobox" aria-label="Project info and legend">
+      <div class="infoHeader">
+        <h2>Info & Legend</h2>
+        <div id="status" class="status">Hover a cell, or click to pin</div>
+      </div>
+
+      <div class="legend">
+        <h3>Color legend (signed proportion)</h3>
+        <svg id="legendSvg" width="280" height="54" role="img" aria-label="Color legend"></svg>
+        <div class="legendRow"><span class="chip neg"></span> more “−” (depleted)</div>
+        <div class="legendRow"><span class="chip neutral"></span> balanced</div>
+        <div class="legendRow"><span class="chip pos"></span> more “+” (enriched)</div>
+        <div class="legendRow"><span class="chip imputed"></span> dotted = imputed structural zero</div>
+      </div>
+
+      <div class="details">
+        <h3>Selection details</h3>
+        <div id="detailsText" class="detailsText">No selection yet.</div>
+        <div class="miniTitle">Mini distribution (hover/click updates)</div>
+        <svg id="miniSvg" width="280" height="120" aria-label="Mini chart"></svg>
+      </div>
+
+      <div class="about">
+        <h3>Project notes (ethical + design)</h3>
+        <ul>
+          <li><b>Ethics:</b> Axes are labeled with units (counts). Outliers are not removed. Missing tissue–TF pairs are shown as dotted “imputed structural zeros”.</li>
+          <li><b>Color theory:</b> Diverging palette (cool→warm) matches “−” vs “+” direction; neutral midpoint is light gray.</li>
+          <li><b>Interaction:</b> <b>Hover</b> shows details + mini chart; <b>Click</b> pins selection and updates the bar chart.</li>
+        </ul>
+        <div class="meta">
+          <div><b>Data:</b> local file <code>cellvar.db.tfbs_seq.tsv</code></div>
+          <div><b>Generated:</b> 2025-12-14</div>
+          <div><b>Author:</b> Josiah Rondon & Anthony Valladares</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <span>Tip: Click a heatmap cell to pin it, then hover other cells to compare.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
